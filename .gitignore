@@ -1,0 +1,142 @@
+# ----------------------------
+# Flutter & Dart
+# ----------------------------
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+flutter_*.png
+generated_plugin_registrant.dart
+**/doc/api/
+
+# ----------------------------
+# IDEs
+# ----------------------------
+
+# VS Code
+.vscode/
+.history/
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+
+# Xcode
+*.xcworkspace
+*.xcuserstate
+*.xcuserdatad/
+xcuserdata/
+
+# ----------------------------
+# macOS & General OS
+# ----------------------------
+.DS_Store
+*.swp
+*.lock
+*.log
+
+# ----------------------------
+# iOS Specific
+# ----------------------------
+ios/Flutter/.last_build_id
+ios/Pods/
+ios/.symlinks/
+ios/.generated/
+
+# Xcode build artifacts
+ios/build/
+ios/Runner.xcworkspace/
+ios/Runner.xcuserstate
+ios/Runner.xcuserdatad/
+ios/Runner/xcuserdata/
+
+# Derived data & modules
+DerivedData/
+*.xcframework
+
+# Provisioning
+*.mobileprovision
+
+# Entitlements & code signing artifacts (managed manually)
+# Uncomment only if you want to ignore these manually
+# ios/Runner.entitlements
+# ios/RunnerProfile.entitlements
+
+# ----------------------------
+# Android Specific
+# ----------------------------
+android/.gradle/
+android/.idea/
+android/local.properties
+android/build/
+android/app/build/
+
+# ----------------------------
+# WatchOS Specific
+# ----------------------------
+**/watch*/build/
+**/watch*/DerivedData/
+**/watch*/.DS_Store
+**/watch*/.xcuserstate
+**/watch*/xcuserdata/
+
+# ----------------------------
+# Symbolication / Obfuscation
+# ----------------------------
+app.*.symbols
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+linux/flutter/ephemeral/.plugin_symlinks/connectivity_plus
+linux/flutter/ephemeral/.plugin_symlinks/device_info_plus
+linux/flutter/ephemeral/.plugin_symlinks/file_selector_linux
+linux/flutter/ephemeral/.plugin_symlinks/flutter_local_notifications_linux
+linux/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_linux
+linux/flutter/ephemeral/.plugin_symlinks/image_picker_linux
+linux/flutter/ephemeral/.plugin_symlinks/open_file_linux
+linux/flutter/ephemeral/.plugin_symlinks/printing
+linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
+linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux
+macos/Flutter/ephemeral/Flutter-Generated.xcconfig
+macos/Flutter/ephemeral/flutter_export_environment.sh
+macos/Pods/Local Podspecs/connectivity_plus.podspec.json
+macos/Pods/Local Podspecs/device_info_plus.podspec.json
+macos/Pods/Local Podspecs/file_selector_macos.podspec.json
+macos/Pods/Local Podspecs/firebase_auth.podspec.json
+macos/Pods/Local Podspecs/firebase_core.podspec.json
+macos/Pods/Local Podspecs/firebase_messaging.podspec.json
+macos/Pods/Local Podspecs/flutter_appauth.podspec.json
+macos/Pods/Local Podspecs/flutter_inappwebview_macos.podspec.json
+macos/Pods/Local Podspecs/flutter_local_notifications.podspec.json
+macos/Pods/Local Podspecs/flutter_secure_storage_macos.podspec.json
+macos/Pods/Local Podspecs/FlutterMacOS.podspec.json
+macos/Pods/Local Podspecs/geolocator_apple.podspec.json
+macos/Pods/Local Podspecs/google_sign_in_ios.podspec.json
+macos/Pods/Local Podspecs/local_auth_darwin.podspec.json
+macos/Pods/Local Podspecs/open_file_mac.podspec.json
+macos/Pods/Local Podspecs/path_provider_foundation.podspec.json
+macos/Pods/Local Podspecs/pdfx.podspec.json
+macos/Pods/Local Podspecs/printing.podspec.json
+macos/Pods/Local Podspecs/shared_preferences_foundation.podspec.json
+macos/Pods/Local Podspecs/webview_flutter_wkwebview.podspec.json
+/ios/build
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugin_registrant.h
+macos/Flutter/GeneratedPluginRegistrant.swift
+linux/flutter/generated_plugins.cmake
+local_plugins/geolocator_android/example/android/app/src/main/java/com/baseflow/geolocator_example/MainActivity.java
+local_plugins/geolocator_android/example/android/app/src/main/java/com/baseflow/geolocator_example/MainActivity.java
+local_plugins/geolocator_android/example/android/app/src/main/java/com/baseflow/geolocator_example/MainActivity.java
+local_plugins/geolocator_android/example/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+local_plugins/geolocator_android/example/android/app/src/main/res/drawable-v21/launch_background.xml
+local_plugins/geolocator_android/example/android/app/src/main/res/drawable/launch_background.xml
+local_plugins/geolocator_android/example/android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+ios/Runner.xcodeproj/project.pbxproj
+local_plugins.zip
+
+# FVM Version Cache
+.fvm/
