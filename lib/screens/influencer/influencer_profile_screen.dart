@@ -34,6 +34,7 @@ class InfluencerProfileScreen extends StatefulWidget {
 class _InfluencerProfileScreenState extends State<InfluencerProfileScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final GlobalKey<NestedScrollViewState> _nestedScrollViewKey = GlobalKey();
 
   @override
   void initState() {
@@ -46,10 +47,29 @@ class _InfluencerProfileScreenState extends State<InfluencerProfileScreen>
       length: (influencer?.platforms.length ?? 4) + 1,
       vsync: this,
     );
+
+    // Add listener to reset scroll position when tab changes
+    _tabController.addListener(_handleTabChange);
+  }
+
+  void _handleTabChange() {
+    if (!_tabController.indexIsChanging) {
+      // Tab animation has completed, reset scroll position
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // Get the inner scroll controller from NestedScrollView
+        final innerController =
+            _nestedScrollViewKey.currentState?.innerController;
+        if (innerController != null && innerController.hasClients) {
+          // Jump to top instantly (better UX than animating)
+          innerController.jumpTo(-1);
+        }
+      });
+    }
   }
 
   @override
   void dispose() {
+    _tabController.removeListener(_handleTabChange);
     _tabController.dispose();
     super.dispose();
   }
@@ -70,6 +90,7 @@ class _InfluencerProfileScreenState extends State<InfluencerProfileScreen>
     return Scaffold(
       backgroundColor: AppColors.backgroundMain,
       body: NestedScrollView(
+        key: _nestedScrollViewKey,
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             // Collapsible Header
