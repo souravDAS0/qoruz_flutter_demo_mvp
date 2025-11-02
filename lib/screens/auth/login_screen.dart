@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
@@ -61,10 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: AppSpacing.xxxl),
-                Text(
-                  'Welcome Back',
-                  style: AppTextStyles.h1,
-                ),
+                Image.asset('assests/png/quroz_full_logo.png', height: 40),
+                const SizedBox(height: AppSpacing.md),
+                Text('Welcome Back', style: AppTextStyles.h1),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
                   'Login to continue to Qoruz',
@@ -138,8 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     return SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed:
-                            authProvider.isLoading ? null : _handleLogin,
+                        onPressed: authProvider.isLoading ? null : _handleLogin,
                         child: authProvider.isLoading
                             ? const SizedBox(
                                 height: 20,
@@ -147,7 +146,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      AppColors.white),
+                                    AppColors.white,
+                                  ),
                                 ),
                               )
                             : const Text('Login'),
@@ -160,8 +160,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     const Expanded(child: Divider()),
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.lg,
+                      ),
                       child: Text(
                         'Or login with',
                         style: AppTextStyles.bodyMedium,
@@ -175,6 +176,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Expanded(
                       child: OutlinedButton.icon(
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          minimumSize: const Size(
+                            double.infinity,
+                            AppSpacing.buttonHeight,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              AppSpacing.radiusRound,
+                            ),
+                          ),
+                          side: const BorderSide(
+                            color: Color.fromARGB(255, 190, 187, 187),
+                            width: 1,
+                          ),
+                          textStyle: AppTextStyles.button,
+                        ),
                         onPressed: () {
                           // TODO: Implement Google login
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -183,23 +201,46 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                         },
-                        icon: const Icon(Icons.g_mobiledata, size: 32),
+                        icon: SvgPicture.asset(
+                          'assests/svg/google.svg',
+                          height: 16,
+                        ),
                         label: const Text('Google'),
                       ),
                     ),
                     const SizedBox(width: AppSpacing.lg),
                     Expanded(
                       child: OutlinedButton.icon(
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          minimumSize: const Size(
+                            double.infinity,
+                            AppSpacing.buttonHeight,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              AppSpacing.radiusRound,
+                            ),
+                          ),
+                          side: const BorderSide(
+                            color: Color.fromARGB(255, 190, 187, 187),
+                            width: 1,
+                          ),
+                          textStyle: AppTextStyles.button,
+                        ),
                         onPressed: () {
                           // TODO: Implement Apple login
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Apple login - Coming soon!'),
+                              content: Text('Microsoft login - Coming soon!'),
                             ),
                           );
                         },
-                        icon: const Icon(Icons.apple, size: 24),
-                        label: const Text('Apple'),
+                        icon: SvgPicture.asset(
+                          'assests/svg/windows.svg',
+                          height: 16,
+                        ),
+                        label: const Text('Microsoft'),
                       ),
                     ),
                   ],
@@ -216,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         context.go(AppRoutes.roleSelection);
                       },
-                      child: const Text('Sign Up'),
+                      child: const Text('Sign Up for free'),
                     ),
                   ],
                 ),

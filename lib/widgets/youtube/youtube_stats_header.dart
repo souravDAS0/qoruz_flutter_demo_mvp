@@ -12,34 +12,45 @@ class YouTubeStatsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: _StatCard(
-            label: 'SUBSCRIBERS',
-            value: platform.formattedSubscribers ?? platform.formattedFollowers,
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: _StatCard(
+              label: 'SUBSCRIBERS',
+              value:
+                  platform.formattedSubscribers ?? platform.formattedFollowers,
+            ),
           ),
-        ),
-        const SizedBox(width: AppSpacing.sm),
-        Container(color: AppColors.border, width: 1, height: 60),
-        const SizedBox(width: AppSpacing.sm),
-        Expanded(
-          child: _StatCard(
-            label: 'AVG. VIEWS',
-            value:
-                platform.formattedAvgViewsVideos ?? platform.formattedAvgViews,
+          const SizedBox(width: AppSpacing.sm),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Container(color: AppColors.border, width: 1),
           ),
-        ),
-        const SizedBox(width: AppSpacing.sm),
-        Container(color: AppColors.border, width: 1, height: 60),
-        const SizedBox(width: AppSpacing.sm),
-        Expanded(
-          child: _StatCard(
-            label: 'TOTAL VIDEOS',
-            value: platform.formattedTotalVideos ?? 'N/A',
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: _StatCard(
+              label: 'AVG. VIEWS',
+              value:
+                  platform.formattedAvgViewsVideos ??
+                  platform.formattedAvgViews,
+            ),
           ),
-        ),
-      ],
+          const SizedBox(width: AppSpacing.sm),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Container(color: AppColors.border, width: 1),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: _StatCard(
+              label: 'TOTAL VIDEOS',
+              value: platform.formattedTotalVideos ?? 'N/A',
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

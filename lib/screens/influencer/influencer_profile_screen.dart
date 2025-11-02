@@ -16,6 +16,9 @@ import '../../widgets/youtube/audience_section.dart';
 import '../../widgets/youtube/brands_section.dart';
 import '../../widgets/youtube/youtube_channel_link.dart';
 import '../../widgets/profile_summary/profile_summary_tab.dart';
+import '../../widgets/instagram/instagram_stats_header.dart';
+import '../../widgets/instagram/instagram_engagement_section.dart';
+import '../../widgets/instagram/instagram_content_section.dart';
 
 /// Influencer profile screen with tabbed platform views
 class InfluencerProfileScreen extends StatefulWidget {
@@ -163,6 +166,11 @@ class _InfluencerProfileScreenState extends State<InfluencerProfileScreen>
     // Use YouTube-specific view for YouTube platform
     if (platform.platform == SocialPlatform.youtube) {
       return _buildYouTubePlatformView(context, influencer, platform);
+    }
+
+    // Use Instagram-specific view for Instagram platform
+    if (platform.platform == SocialPlatform.instagram) {
+      return _buildInstagramPlatformView(context, influencer, platform);
     }
 
     // Default view for other platforms
@@ -317,6 +325,78 @@ class _InfluencerProfileScreenState extends State<InfluencerProfileScreen>
               handle: platform.handle ?? '@channel',
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  /// Instagram-specific platform view with detailed analytics
+  Widget _buildInstagramPlatformView(
+    BuildContext context,
+    InfluencerModel influencer,
+    PlatformStats platform,
+  ) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.only(bottom: 100),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: AppSpacing.lg),
+
+          // 1. Instagram Stats Header (Followers, Engagement Rate, Estimated Reach)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+            child: InstagramStatsHeader(platform: platform),
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+            child: const Divider(),
+          ),
+
+          // 2. Qoruz Score Section with Insights
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+            child: QoruzScoreSection(platform: platform),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+
+          // 3. Engagement and Views Section (Images & Reels)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+            child: InstagramEngagementSection(platform: platform),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+
+          // 4. Content Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+            child: InstagramContentSection(
+              hashtags: influencer.hashtags,
+              videos: influencer.videos,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+
+          // 5. Audience Section
+          if (influencer.audienceDemographics != null) ...[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              child: AudienceSection(
+                demographics: influencer.audienceDemographics!,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.lg),
+          ],
+
+          // 6. Brands Section
+          if (influencer.brandCollaborations.isNotEmpty) ...[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              child: BrandsSection(brands: influencer.brandCollaborations),
+            ),
+            const SizedBox(height: AppSpacing.lg),
+          ],
         ],
       ),
     );
@@ -610,7 +690,7 @@ class _CollapsibleHeaderDelegate extends SliverPersistentHeaderDelegate {
                             ),
                           ),
                           // Collapsible content - fades out
-                          if (collapsibleOpacity > 0.1)
+                          if (collapsibleOpacity > 0.9)
                             Opacity(
                               opacity: collapsibleOpacity,
                               child: Column(

@@ -5,6 +5,7 @@ import '../models/content_category.dart';
 import '../models/audience_demographics.dart';
 import '../models/video_model.dart';
 import '../models/brand_collaboration.dart';
+import '../models/insight_model.dart';
 
 /// Mock data service for MVP
 class MockDataService {
@@ -25,6 +26,9 @@ class MockDataService {
             handle: '@sarahjfashion',
             avgLikes: 6500,
             avgComments: 245,
+            avgCommentsShorts: 100,
+            avgLikesShorts: 1000,
+            avgViewsShorts: 568,
             avgShares: 180,
             totalPosts: 1247,
             estimatedReach: 87500,
@@ -53,9 +57,22 @@ class MockDataService {
             likesCommentsRatio: 5.72,
             recurringViewership: 4.28,
             insights: [
-              'Popular content - This creator drives 22.03 likes per 1000 views.',
-              'High video viewership - This Creator generates 4.28 views per 100 followers.',
-              'Moderate ability to drive comments - This creator drives 1.26 comments per 1000 views.',
+              Insight(
+                type: InsightType.positive,
+                title: 'Popular content',
+                subtitle: 'This creator drives 22.03 likes per 1000 views.',
+              ),
+              Insight(
+                type: InsightType.positive,
+                title: 'High video viewership',
+                subtitle:
+                    'This Creator generates 4.28 views per 100 followers.',
+              ),
+              Insight(
+                type: InsightType.warning,
+                title: 'Moderate ability to drive comments',
+                subtitle: 'This creator drives 1.26 comments per 1000 views.',
+              ),
             ],
             channelUrl: 'https://www.youtube.com/@sarah_henley',
           ),
@@ -123,6 +140,48 @@ class MockDataService {
             handle: '@adidas',
             postCount: 38,
             category: BrandCategory.sports,
+          ),
+        ],
+        videos: [
+          Video(
+            id: '1',
+            title: 'iPhone 15 Pro Max Review',
+            thumbnailUrl: 'https://picsum.photos/400/300?random=101',
+            views: 9300000,
+            likes: 525300,
+            comments: 38400,
+            uploadDate: DateTime.now().subtract(const Duration(days: 5)),
+            type: VideoType.video,
+          ),
+          Video(
+            id: '2',
+            title: 'Samsung Galaxy S24 Ultra Unboxing',
+            thumbnailUrl: 'https://picsum.photos/400/300?random=102',
+            views: 4700000,
+            likes: 455100,
+            comments: 25800,
+            uploadDate: DateTime.now().subtract(const Duration(days: 12)),
+            type: VideoType.video,
+          ),
+          Video(
+            id: '3',
+            title: 'Top 5 Gadgets of 2024',
+            thumbnailUrl: 'https://picsum.photos/400/300?random=103',
+            views: 5400000,
+            likes: 422800,
+            comments: 11900,
+            uploadDate: DateTime.now().subtract(const Duration(days: 18)),
+            type: VideoType.video,
+          ),
+          Video(
+            id: '4',
+            title: 'Quick Tips: Best Camera Settings',
+            thumbnailUrl: 'https://picsum.photos/400/300?random=104',
+            views: 3500000,
+            likes: 391800,
+            comments: 15200,
+            uploadDate: DateTime.now().subtract(const Duration(days: 3)),
+            type: VideoType.short,
           ),
         ],
         portfolioImages: [
@@ -211,10 +270,28 @@ class MockDataService {
 
             qoruzScoreRank: 'Top 1%',
             insights: [
-              'Popular content - This creator drives 22.03 likes per 1000 views.',
-              'High video viewership - This Creator generates 4.28 views per 100 followers.',
-              'Moderate ability to drive comments - This creator drives 1.26 comments per 1000 views.',
-              'High Indian follower base - This creator has about 85.73% follower base from India.',
+              Insight(
+                type: InsightType.positive,
+                title: 'Popular content',
+                subtitle: 'This creator drives 22.03 likes per 1000 views.',
+              ),
+              Insight(
+                type: InsightType.positive,
+                title: 'High video viewership',
+                subtitle:
+                    'This Creator generates 4.28 views per 100 followers.',
+              ),
+              Insight(
+                type: InsightType.warning,
+                title: 'Moderate ability to drive comments',
+                subtitle: 'This creator drives 1.26 comments per 1000 views.',
+              ),
+              Insight(
+                type: InsightType.positive,
+                title: 'High Indian follower base',
+                subtitle:
+                    'This creator has about 85.73% follower base from India.',
+              ),
             ],
             channelUrl: 'https://www.youtube.com/mralextech',
           ),
@@ -223,13 +300,14 @@ class MockDataService {
             followers: 95000,
             engagementRate: 3.2,
             avgViews: 8000,
-            handle: '@alexchentech',
+            handle: '@MrAlexTech',
             avgLikes: 3040,
             avgComments: 198,
             avgShares: 425,
             totalPosts: 5620,
             estimatedReach: 66500,
             qoruzScore: 7.8,
+            channelUrl: 'https://x.com/MrAlexTech',
           ),
           PlatformStats(
             platform: SocialPlatform.instagram,
@@ -244,19 +322,6 @@ class MockDataService {
             estimatedReach: 89600,
             qoruzScore: 8.1,
           ),
-          // PlatformStats(
-          //   platform: SocialPlatform.facebook,
-          //   followers: 62000,
-          //   engagementRate: 2.8,
-          //   avgViews: 9500,
-          //   handle: 'alextechreviews',
-          //   avgLikes: 1736,
-          //   avgComments: 92,
-          //   avgShares: 145,
-          //   totalPosts: 423,
-          //   estimatedReach: 43400,
-          //   qoruzScore: 7.2,
-          // ),
         ],
         bio:
             'Tech reviewer & gadget enthusiast. Honest reviews of the latest tech products.',

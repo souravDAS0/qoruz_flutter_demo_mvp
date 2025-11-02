@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
@@ -50,7 +51,9 @@ class _SignupScreenState extends State<SignupScreen> {
 
     if (_formKey.currentState!.validate()) {
       final authProvider = context.read<AuthProvider>();
-      final role = widget.userRole == 'brand' ? UserRole.brand : UserRole.creator;
+      final role = widget.userRole == 'brand'
+          ? UserRole.brand
+          : UserRole.creator;
 
       final success = await authProvider.signUp(
         name: _nameController.text.trim(),
@@ -74,7 +77,9 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final roleDisplay = widget.userRole == 'brand' ? 'Brand/Agency' : 'Influencer/Creator';
+    final roleDisplay = widget.userRole == 'brand'
+        ? 'Brand/Agency'
+        : 'Influencer/Creator';
 
     return Scaffold(
       appBar: AppBar(
@@ -91,16 +96,15 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Create Account',
-                  style: AppTextStyles.h1,
-                ),
+                Image.asset('assests/png/quroz_full_logo.png', height: 40),
+                const SizedBox(height: AppSpacing.md),
+                Text('Create Account', style: AppTextStyles.h1),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
                   'Join Qoruz as $roleDisplay',
                   style: AppTextStyles.bodyMedium,
                 ),
-                const SizedBox(height: AppSpacing.xxxl),
+                const SizedBox(height: AppSpacing.xxl),
                 TextFormField(
                   controller: _nameController,
                   decoration: const InputDecoration(
@@ -244,8 +248,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     return SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed:
-                            authProvider.isLoading ? null : _handleSignup,
+                        onPressed: authProvider.isLoading
+                            ? null
+                            : _handleSignup,
                         child: authProvider.isLoading
                             ? const SizedBox(
                                 height: 20,
@@ -253,7 +258,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      AppColors.white),
+                                    AppColors.white,
+                                  ),
                                 ),
                               )
                             : const Text('Sign Up'),
@@ -266,8 +272,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     const Expanded(child: Divider()),
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.lg,
+                      ),
                       child: Text(
                         'Or sign up with',
                         style: AppTextStyles.bodyMedium,
@@ -281,29 +288,71 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     Expanded(
                       child: OutlinedButton.icon(
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          minimumSize: const Size(
+                            double.infinity,
+                            AppSpacing.buttonHeight,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              AppSpacing.radiusRound,
+                            ),
+                          ),
+                          side: const BorderSide(
+                            color: Color.fromARGB(255, 190, 187, 187),
+                            width: 1,
+                          ),
+                          textStyle: AppTextStyles.button,
+                        ),
                         onPressed: () {
+                          // TODO: Implement Google login
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Google signup - Coming soon!'),
+                              content: Text('Google login - Coming soon!'),
                             ),
                           );
                         },
-                        icon: const Icon(Icons.g_mobiledata, size: 32),
+                        icon: SvgPicture.asset(
+                          'assests/svg/google.svg',
+                          height: 16,
+                        ),
                         label: const Text('Google'),
                       ),
                     ),
                     const SizedBox(width: AppSpacing.lg),
                     Expanded(
                       child: OutlinedButton.icon(
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          minimumSize: const Size(
+                            double.infinity,
+                            AppSpacing.buttonHeight,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              AppSpacing.radiusRound,
+                            ),
+                          ),
+                          side: const BorderSide(
+                            color: Color.fromARGB(255, 190, 187, 187),
+                            width: 1,
+                          ),
+                          textStyle: AppTextStyles.button,
+                        ),
                         onPressed: () {
+                          // TODO: Implement Apple login
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Apple signup - Coming soon!'),
+                              content: Text('Microsoft login - Coming soon!'),
                             ),
                           );
                         },
-                        icon: const Icon(Icons.apple, size: 24),
-                        label: const Text('Apple'),
+                        icon: SvgPicture.asset(
+                          'assests/svg/windows.svg',
+                          height: 16,
+                        ),
+                        label: const Text('Microsoft'),
                       ),
                     ),
                   ],

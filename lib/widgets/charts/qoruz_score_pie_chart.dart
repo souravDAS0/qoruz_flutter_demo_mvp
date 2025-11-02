@@ -13,29 +13,29 @@ class QoruzScorePieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 160,
-      height: 160,
+      width: 120,
+      height: 120,
       child: Stack(
         alignment: Alignment.center,
         children: [
           PieChart(
             PieChartData(
               sectionsSpace: 0,
-              centerSpaceRadius: 55,
+              centerSpaceRadius: 45,
               startDegreeOffset: -90,
               sections: [
                 PieChartSectionData(
                   color: _getScoreColor(score),
                   value: score,
                   title: '',
-                  radius: 20,
+                  radius: 12,
                   borderSide: BorderSide.none,
                 ),
                 PieChartSectionData(
                   color: AppColors.border,
                   value: 10 - score,
                   title: '',
-                  radius: 20,
+                  radius: 12,
                   borderSide: BorderSide.none,
                 ),
               ],
@@ -46,7 +46,7 @@ class QoruzScorePieChart extends StatelessWidget {
             children: [
               Text(
                 score.toStringAsFixed(2),
-                style: AppTextStyles.h2.copyWith(
+                style: AppTextStyles.h3.copyWith(
                   fontWeight: FontWeight.w700,
                   color: _getScoreColor(score),
                 ),

@@ -1,3 +1,5 @@
+import 'insight_model.dart';
+
 /// Social platform enum
 enum SocialPlatform { instagram, youtube, twitter, facebook }
 
@@ -62,7 +64,7 @@ class PlatformStats {
   final double? likesCommentsRatio; // Likes-to-comments ratio
   final double? recurringViewership; // Recurring viewership score
   final String? qoruzScoreRank; // e.g., "Top 2%", "Top 1%"
-  final List<String>? insights; // List of insight messages
+  final List<Insight>? insights; // List of insights
   final String? channelUrl; // YouTube channel URL
 
   PlatformStats({
@@ -125,7 +127,9 @@ class PlatformStats {
       recurringViewership: json['recurringViewership']?.toDouble(),
       qoruzScoreRank: json['qoruzScoreRank'],
       insights: json['insights'] != null
-          ? List<String>.from(json['insights'])
+          ? (json['insights'] as List)
+              .map((i) => Insight.fromJson(i))
+              .toList()
           : null,
       channelUrl: json['channelUrl'],
     );
@@ -158,7 +162,7 @@ class PlatformStats {
       'likesCommentsRatio': likesCommentsRatio,
       'recurringViewership': recurringViewership,
       'qoruzScoreRank': qoruzScoreRank,
-      'insights': insights,
+      'insights': insights?.map((i) => i.toJson()).toList(),
       'channelUrl': channelUrl,
     };
   }

@@ -26,6 +26,7 @@ class QoruzApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         routerConfig: AppRouter.router,
+        debugShowMaterialGrid: false,
       ),
     );
   }

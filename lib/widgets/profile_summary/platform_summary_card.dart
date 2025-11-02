@@ -24,7 +24,9 @@ class PlatformSummaryCard extends StatelessWidget {
       case SocialPlatform.instagram:
         return 'https://www.instagram.com/${handle.replaceAll('@', '')}';
       case SocialPlatform.twitter:
-        return 'https://twitter.com/${handle.replaceAll('@', '')}';
+        return platform.channelUrl ??
+            'https://x.com/${handle.replaceAll('@', '')}';
+
       case SocialPlatform.facebook:
         return 'https://www.facebook.com/${handle.replaceAll('@', '')}';
     }
