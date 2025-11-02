@@ -14,8 +14,6 @@ class ProfileSummaryTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      key: const ValueKey('profile_summary'),
-      primary: false,
       padding: const EdgeInsets.only(bottom: 100),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

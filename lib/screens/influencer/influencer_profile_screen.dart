@@ -175,8 +175,6 @@ class _InfluencerProfileScreenState extends State<InfluencerProfileScreen>
 
     // Default view for other platforms
     return SingleChildScrollView(
-      key: ValueKey('${platform.platform.name}_${platform.handle}'),
-      primary: false,
       padding: const EdgeInsets.only(bottom: 100),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,8 +257,6 @@ class _InfluencerProfileScreenState extends State<InfluencerProfileScreen>
     PlatformStats platform,
   ) {
     return SingleChildScrollView(
-      key: ValueKey('youtube_${platform.handle}'),
-      primary: false,
       padding: const EdgeInsets.only(bottom: 100),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -341,8 +337,6 @@ class _InfluencerProfileScreenState extends State<InfluencerProfileScreen>
     PlatformStats platform,
   ) {
     return SingleChildScrollView(
-      key: ValueKey('instagram_${platform.handle}'),
-      primary: false,
       padding: const EdgeInsets.only(bottom: 100),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
