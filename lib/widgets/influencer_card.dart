@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_text_styles.dart';
 import '../core/constants/app_spacing.dart';
@@ -27,64 +28,80 @@ class InfluencerCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.md),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               // Profile Image
-              Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(influencer.profileImage),
-                  ),
-                  if (influencer.isVerified)
-                    Positioned(
-                      right: 0,
-                      bottom: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: const BoxDecoration(
-                          color: AppColors.teal,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.check,
-                          size: 12,
-                          color: AppColors.white,
+              Hero(
+                tag: 'influencer-${influencer.id}',
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(influencer.profileImage),
+                    ),
+                    if (influencer.isVerified)
+                      Positioned(
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
+                            color: AppColors.teal,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.check,
+                            size: 12,
+                            color: AppColors.white,
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
-              const SizedBox(height: AppSpacing.sm),
+              const SizedBox(height: 6),
 
               // Name
-              Text(
-                influencer.name,
-                style: AppTextStyles.h4.copyWith(fontSize: 16),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: AppSpacing.xs),
-
-              // Category Badge
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.sm,
-                  vertical: AppSpacing.xs,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryOrange.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
-                ),
-                child: Text(
-                  influencer.category.displayName,
-                  style: AppTextStyles.caption.copyWith(
-                    color: AppColors.primaryOrange,
-                    fontWeight: FontWeight.w600,
+              Hero(
+                tag: 'influencer-name-${influencer.id}',
+                child: Material(
+                  color: Colors.transparent,
+                  child: Text(
+                    influencer.name,
+                    style: AppTextStyles.h4.copyWith(fontSize: 16),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
-              const SizedBox(height: AppSpacing.sm),
+              const SizedBox(height: 4),
+
+              // Category Badge
+              Hero(
+                tag: 'influencer-category-${influencer.id}',
+                child: Material(
+                  color: Colors.transparent,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.sm,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryOrange.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
+                    ),
+                    child: Text(
+                      influencer.category.displayName,
+                      style: AppTextStyles.caption.copyWith(
+                        color: AppColors.primaryOrange,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6),
 
               // Platform Icons
               Row(
@@ -92,31 +109,35 @@ class InfluencerCard extends StatelessWidget {
                 children: influencer.platforms.take(3).map((platform) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 2),
-                    child: Icon(
-                      _getPlatformIcon(platform.platform),
-                      size: 16,
-                      color: AppColors.textSecondary,
+                    child: SvgPicture.asset(
+                      _getPlatformSvgPath(platform.platform),
+                      width: 16,
+                      height: 16,
                     ),
                   );
                 }).toList(),
               ),
-              const SizedBox(height: AppSpacing.sm),
+              const SizedBox(height: 6),
 
               // Stats
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _StatItem(
-                    icon: Icons.people_outline,
-                    value: primaryPlatform.formattedFollowers,
+                  Flexible(
+                    child: _StatItem(
+                      icon: Icons.people_outline,
+                      value: primaryPlatform.formattedFollowers,
+                    ),
                   ),
-                  _StatItem(
-                    icon: Icons.trending_up,
-                    value: primaryPlatform.formattedEngagement,
+                  Flexible(
+                    child: _StatItem(
+                      icon: Icons.trending_up,
+                      value: primaryPlatform.formattedEngagement,
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: AppSpacing.sm),
+              const SizedBox(height: 8),
 
               // View Profile Button
               SizedBox(
@@ -145,17 +166,8 @@ class InfluencerCard extends StatelessWidget {
     );
   }
 
-  IconData _getPlatformIcon(SocialPlatform platform) {
-    switch (platform) {
-      case SocialPlatform.instagram:
-        return Icons.camera_alt;
-      case SocialPlatform.youtube:
-        return Icons.play_circle_outline;
-      case SocialPlatform.tiktok:
-        return Icons.music_note;
-      case SocialPlatform.twitter:
-        return Icons.tag;
-    }
+  String _getPlatformSvgPath(SocialPlatform platform) {
+    return platform.svgAssetPath;
   }
 }
 

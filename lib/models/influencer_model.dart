@@ -1,4 +1,8 @@
 import 'social_platform.dart';
+import 'content_category.dart';
+import 'audience_demographics.dart';
+import 'video_model.dart';
+import 'brand_collaboration.dart';
 
 /// Influencer category enum
 enum InfluencerCategory {
@@ -53,9 +57,13 @@ class InfluencerModel {
   final String? location;
   final List<String> languages;
   final bool isVerified;
-  final List<String> brandCollaborations;
+  final List<BrandCollaboration> brandCollaborations;
   final List<String> portfolioImages;
   final DateTime joinedDate;
+  final List<ContentCategory> contentCategories;
+  final AudienceDemographics? audienceDemographics;
+  final List<String> hashtags;
+  final List<Video> videos;
 
   InfluencerModel({
     required this.id,
@@ -70,6 +78,10 @@ class InfluencerModel {
     required this.brandCollaborations,
     required this.portfolioImages,
     required this.joinedDate,
+    this.contentCategories = const [],
+    this.audienceDemographics,
+    this.hashtags = const [],
+    this.videos = const [],
   });
 
   factory InfluencerModel.fromJson(Map<String, dynamic> json) {
@@ -87,9 +99,36 @@ class InfluencerModel {
       location: json['location'],
       languages: List<String>.from(json['languages']),
       isVerified: json['isVerified'] ?? false,
-      brandCollaborations: List<String>.from(json['brandCollaborations']),
+      brandCollaborations: json['brandCollaborations'] != null
+          ? (json['brandCollaborations'] as List)
+              .map((b) => b is String
+                  ? BrandCollaboration(
+                      id: b,
+                      name: b,
+                      imageUrl: '',
+                      handle: '@$b',
+                      postCount: 0,
+                      category: BrandCategory.other,
+                    )
+                  : BrandCollaboration.fromJson(b))
+              .toList()
+          : [],
       portfolioImages: List<String>.from(json['portfolioImages']),
       joinedDate: DateTime.parse(json['joinedDate']),
+      contentCategories: json['contentCategories'] != null
+          ? (json['contentCategories'] as List)
+              .map((c) => ContentCategory.fromJson(c))
+              .toList()
+          : [],
+      audienceDemographics: json['audienceDemographics'] != null
+          ? AudienceDemographics.fromJson(json['audienceDemographics'])
+          : null,
+      hashtags: json['hashtags'] != null
+          ? List<String>.from(json['hashtags'])
+          : [],
+      videos: json['videos'] != null
+          ? (json['videos'] as List).map((v) => Video.fromJson(v)).toList()
+          : [],
     );
   }
 
@@ -104,9 +143,14 @@ class InfluencerModel {
       'location': location,
       'languages': languages,
       'isVerified': isVerified,
-      'brandCollaborations': brandCollaborations,
+      'brandCollaborations':
+          brandCollaborations.map((b) => b.toJson()).toList(),
       'portfolioImages': portfolioImages,
       'joinedDate': joinedDate.toIso8601String(),
+      'contentCategories': contentCategories.map((c) => c.toJson()).toList(),
+      'audienceDemographics': audienceDemographics?.toJson(),
+      'hashtags': hashtags,
+      'videos': videos.map((v) => v.toJson()).toList(),
     };
   }
 

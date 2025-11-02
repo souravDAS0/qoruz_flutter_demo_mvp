@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 /// App text styles based on Qoruz design system
@@ -6,28 +7,28 @@ class AppTextStyles {
   AppTextStyles._();
 
   // Headings
-  static const TextStyle h1 = TextStyle(
+  static TextStyle h1 = GoogleFonts.rethinkSans(
     fontSize: 32,
     fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
     height: 1.2,
   );
 
-  static const TextStyle h2 = TextStyle(
+  static TextStyle h2 = GoogleFonts.rethinkSans(
     fontSize: 24,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
     height: 1.3,
   );
 
-  static const TextStyle h3 = TextStyle(
+  static TextStyle h3 = GoogleFonts.rethinkSans(
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
     height: 1.4,
   );
 
-  static const TextStyle h4 = TextStyle(
+  static TextStyle h4 = GoogleFonts.rethinkSans(
     fontSize: 18,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
@@ -35,21 +36,21 @@ class AppTextStyles {
   );
 
   // Body Text
-  static const TextStyle bodyLarge = TextStyle(
+  static TextStyle bodyLarge = GoogleFonts.rethinkSans(
     fontSize: 16,
     fontWeight: FontWeight.w400,
     color: AppColors.textPrimary,
     height: 1.5,
   );
 
-  static const TextStyle bodyMedium = TextStyle(
+  static TextStyle bodyMedium = GoogleFonts.rethinkSans(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondary,
     height: 1.5,
   );
 
-  static const TextStyle bodySmall = TextStyle(
+  static TextStyle bodySmall = GoogleFonts.rethinkSans(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: AppColors.textTertiary,
@@ -57,14 +58,14 @@ class AppTextStyles {
   );
 
   // Button Text
-  static const TextStyle button = TextStyle(
+  static TextStyle button = GoogleFonts.rethinkSans(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     height: 1.2,
   );
 
   // Caption
-  static const TextStyle caption = TextStyle(
+  static TextStyle caption = GoogleFonts.rethinkSans(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: AppColors.textTertiary,
@@ -72,7 +73,7 @@ class AppTextStyles {
   );
 
   // Label
-  static const TextStyle label = TextStyle(
+  static TextStyle label = GoogleFonts.rethinkSans(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppColors.textSecondary,
@@ -80,7 +81,7 @@ class AppTextStyles {
   );
 
   // Overline
-  static const TextStyle overline = TextStyle(
+  static TextStyle overline = GoogleFonts.rethinkSans(
     fontSize: 10,
     fontWeight: FontWeight.w600,
     color: AppColors.textTertiary,

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/auth/splash_screen.dart';
 import '../screens/auth/role_selection_screen.dart';
@@ -52,9 +53,20 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.influencerProfile,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final id = state.pathParameters['id']!;
-          return InfluencerProfileScreen(influencerId: id);
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: InfluencerProfileScreen(influencerId: id),
+            transitionDuration: const Duration(milliseconds: 800),
+            reverseTransitionDuration: const Duration(milliseconds: 800),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: CurveTween(curve: Curves.easeInOut).animate(animation),
+                child: child,
+              );
+            },
+          );
         },
       ),
       GoRoute(

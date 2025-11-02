@@ -62,13 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'QORUZ',
-          style: AppTextStyles.h3.copyWith(
-            fontWeight: FontWeight.w900,
-            letterSpacing: 2,
-          ),
-        ),
+        title: Image.asset('assests/png/quroz_full_logo.png', height: 40),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
@@ -96,9 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: const Icon(Icons.clear),
                         onPressed: () {
                           _searchController.clear();
-                          context
-                              .read<InfluencerProvider>()
-                              .searchInfluencers('');
+                          context.read<InfluencerProvider>().searchInfluencers(
+                            '',
+                          );
                         },
                       )
                     : null,
@@ -117,12 +111,14 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, provider, child) {
                 return ListView(
                   scrollDirection: Axis.horizontal,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.lg,
+                  ),
                   children: [
                     _FilterChip(
                       label: 'All',
-                      isSelected: provider.selectedCategory == null &&
+                      isSelected:
+                          provider.selectedCategory == null &&
                           provider.selectedPlatform == null,
                       onTap: () {
                         provider.clearFilters();
@@ -132,8 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Platform filters
                     ...SocialPlatform.values.map((platform) {
                       return Padding(
-                        padding:
-                            const EdgeInsets.only(right: AppSpacing.sm),
+                        padding: const EdgeInsets.only(right: AppSpacing.sm),
                         child: _FilterChip(
                           label: platform.displayName,
                           isSelected: provider.selectedPlatform == platform,
@@ -150,8 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Category filters
                     ...InfluencerCategory.values.take(5).map((category) {
                       return Padding(
-                        padding:
-                            const EdgeInsets.only(right: AppSpacing.sm),
+                        padding: const EdgeInsets.only(right: AppSpacing.sm),
                         child: _FilterChip(
                           label: category.displayName,
                           isSelected: provider.selectedCategory == category,
@@ -176,9 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Consumer<InfluencerProvider>(
               builder: (context, provider, child) {
                 if (provider.isLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 if (provider.influencers.isEmpty) {
@@ -192,10 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColors.textTertiary,
                         ),
                         const SizedBox(height: AppSpacing.lg),
-                        Text(
-                          'No influencers found',
-                          style: AppTextStyles.h3,
-                        ),
+                        Text('No influencers found', style: AppTextStyles.h3),
                         const SizedBox(height: AppSpacing.sm),
                         Text(
                           'Try adjusting your filters',
@@ -239,10 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
             activeIcon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(
             icon: Icon(Icons.campaign_outlined),
             activeIcon: Icon(Icons.campaign),

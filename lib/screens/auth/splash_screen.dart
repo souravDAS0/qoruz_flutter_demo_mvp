@@ -30,23 +30,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: AppColors.primaryGradient,
-        ),
+        decoration: const BoxDecoration(gradient: AppColors.primaryGradient),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Logo or Brand name
-              Text(
-                'QORUZ',
-                style: AppTextStyles.h1.copyWith(
-                  color: AppColors.white,
-                  fontSize: 48,
-                  letterSpacing: 8,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
+              Image.asset('assests/png/quroz_full_logo.png', height: 80),
               const SizedBox(height: 16),
               Text(
                 'Influencer Marketing Platform',
